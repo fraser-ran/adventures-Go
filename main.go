@@ -7,13 +7,28 @@ import (
 )
 
 func main() {
-	// var intNum int = 10
-	// var floatNum float64 = 10.2
+	myString := "resume"
+	indexed := myString[0]
+	fmt.Printf("%v, %T\n", indexed, indexed)
 
-	// fmt.Println("int: ",intNum, "\n", "float: ", floatNum )
+	
+}
 
-	// str:= "beans"
-	// // fmt.Println(utf8.RuneCountInString((str)))
+/* @Params: takes a string and prints it out and then 
+*/
+func printME(printVal string)(string, error){
+	var err error 
+	if utf8.RuneCountInString(printVal)<4{
+		fmt.Println("ERROR")
+		err = errors.New("To small string")
+		return "error", err
+	}
+	fmt.Println(printVal)
+	
+	return printVal, err
+}
+
+func arrsSlMaps(){
 	//? integer Array 
 	var intArr = [...]int32{1,2,3}
 	fmt.Println(intArr)
@@ -44,22 +59,21 @@ func main() {
 	}else {
 		fmt.Println("name not found")
 	}
-	otMap = otMap.append()
-	// println(y)
+	otMap["bon"] = 45
+	otMap["Fraser"] = 22
+	otMap["69"] = 69
 
-	
-}
-
-/* @Params: takes a string and prints it out and then 
-*/
-func printME(printVal string)(string, error){
-	var err error 
-	if utf8.RuneCountInString(printVal)<4{
-		fmt.Println("ERROR")
-		err = errors.New("To small string")
-		return "error", err
+	for name, vals := range otMap{
+		fmt.Println("Name:", name, "Values:", vals)
 	}
-	fmt.Println(printVal)
-	
-	return printVal, err
+
+	i := 0
+	for {
+		fmt.Print(i)
+		i++
+		if i > 10{
+			break
+		}
+	 }
+
 }
