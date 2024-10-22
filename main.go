@@ -21,7 +21,30 @@ func main() {
 	intSlice := []int32{4,5,6}
 	fmt.Println(intSlice)
 	intSlice = append(intSlice, 69)
-
+	//? Map / Dictionary / Hash / HashMap 
+	myMap := make(map[string]uint8)
+	fmt.Println(myMap)
+	otMap := map[string]uint8{"Adam":23, "Sarah": 45}
+	//* get value from key 
+	fmt.Println(otMap["Adam"])
+	//! if no item exists, the map will give the default type -> (unsigned int of bit size 8)= 0 
+	fmt.Println(otMap["beans"])
+	// ? how we can check if adam is an actual key in the map? 
+	ageAdam, ok := otMap["Adam"]
+	if ok{
+		fmt.Printf("the age is %v \n", ageAdam)
+	}else {
+		fmt.Println("name not found")
+	}
+	//? to delete an item from a map
+	delete(otMap, "Sarah")
+	saAge, oks := otMap["Sarah"]
+	if oks{
+		fmt.Println(saAge)
+	}else {
+		fmt.Println("name not found")
+	}
+	otMap = otMap.append()
 	// println(y)
 
 	
