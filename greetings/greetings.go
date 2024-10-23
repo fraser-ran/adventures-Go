@@ -10,3 +10,9 @@ func Hello(name string) string {
     message := fmt.Sprintf("Hi, %v. Welcome!", name)
     return message
 }
+
+
+// //func beans(name string) (string){
+//     bean:= fmt.Sprintf("Hi, I am %v and I like beans", name)
+//     return bean
+// }
