@@ -1,17 +1,38 @@
 package main
 
 import (
-	"fmt"
-	"unicode/utf8"
 	"errors"
+	"fmt"
+	"strings"
+	"unicode/utf8"
 )
+// ? Example of a struct
+type gasEngine struct{
+	kpl uint8 //km per liter
+	liters uint8
+	owner 
+	//! here we put the owner type so it makes an owner struct that we can directly call stuff from, treating the 
+	// ! owner struct that is part of the gasEngine as just extra parts of the gasEngine struct 
+}
+// ? Here we tack on a method onto the gasEngine struct so we can get some object functionanlity of an object 
+func (g gasEngine) fuelRange() uint8{
+	return g.kpl*g.liters
+}
+
+type owner struct{
+	name string
+}
 
 func main() {
-	myString := "resume"
-	indexed := myString[0]
-	fmt.Printf("%v, %T\n", indexed, indexed)
-
-	
+	structs()
+}
+func structs(){
+	var eEngine gasEngine
+	fmt.Println(eEngine.kpl, eEngine.liters, eEngine.name)//! is an empty struct, prints to default values ->(0) 
+	// ? when instantiating a struct, the order the variables were created is the default order they will be assigned 
+	fullEngine := gasEngine{25, 10, owner{"Fraser"}} 
+	fmt.Println(fullEngine.kpl, fullEngine.liters, fullEngine.name)
+	fmt.Printf("%v's car has a range of %d km", fullEngine.name, fullEngine.fuelRange())
 }
 
 /* @Params: takes a string and prints it out and then 
@@ -27,7 +48,59 @@ func printME(printVal string)(string, error){
 	
 	return printVal, err
 }
+/*String practice*/
+func myStrings(){
+	strSlice := []string{"s","u","b","o","p","t","i","m","a","l"}
+	catStr := ""
+	//! very ineffcient method of concatenating a string (creates a new string each time it loops)
+	for i:= range strSlice{
+		catStr += strSlice[i]
+		fmt.Println(catStr)
+	}
+	opSlice := []string{"o","p","t","i","m","a","l"}
+	var strBuilder strings.Builder
+	//* optimal method
+	for i := range opSlice{
+		strBuilder.WriteString(opSlice[i])
+	}
+	goodCatStr := strBuilder.String()
+	fmt.Println(goodCatStr)
+}
 
+/*Loop practice*/
+func loops(){
+	// ? while loop
+	i := 0
+	fmt.Println("while loop: ")
+	for {
+		fmt.Print(i)
+		i++
+		if i > 10{
+			break
+		}
+	 }
+	 // ? FOR LOOP 
+	 fmt.Println("\nfor loop: ")
+	 for i := 0 ; i<4; i++ { 
+		fmt.Print(i)
+	}
+
+	// ? INCREMENT THROUGH A LIST, SLICE OR STRING LOOP
+	fmt.Println("incrememnt through a loop and DO NOT show values")
+	myString := "resume"
+	indexed := myString[0]
+	fmt.Printf("%v, %T\n", indexed, indexed)
+	for i, v:= range myString{
+		fmt.Println(i, v)
+	}
+	fmt.Println("\n incrememnt through a loop and show values")
+	sString := "My String"
+	for i, char := range sString{
+		fmt.Printf("Index: %d, character: %c \n" ,i, char )
+		//! we need to display the char as %c or it will default to its uInt utf-8 val 
+	}
+}
+/*arrays, slices and maps*/
 func arrsSlMaps(){
 	//? integer Array 
 	var intArr = [...]int32{1,2,3}
